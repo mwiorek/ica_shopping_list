@@ -318,7 +318,7 @@ class ShoppingData():
                 name = row.get("ProductName", "").capitalize()
                 uuid = row.get("OfflineId", "")
                 complete = row.get("IsStrikedOver", False)
-                source = row.get("SourceId", "")  # Handle the case when 'SourceId' is missing
+                source = row.get("SourceId", 0)  # Handle the case when 'SourceId' is missing, set to 0 default if missing
 
                 item = {"name": name, "id": uuid, "complete": complete, "SourceId": source}
                 _LOGGER.debug("Item: " + str(item))
