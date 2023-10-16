@@ -314,11 +314,11 @@ class ShoppingData():
                 return
 
             _LOGGER.debug("Adding to ica: " + str(api_data))
-            for row in api_data["Rows"]:
-                name = row["ProductName"].capitalize()
-                uuid = row["OfflineId"]
-                complete = row["IsStrikedOver"]
-                source = row["SourceId"]
+            for row in api_data.get("Rows", []):
+                name = row.get("ProductName", "").capitalize()
+                uuid = row.get("OfflineId", "")
+                complete = row.get("IsStrikedOver", False)
+                source = row.get("SourceId", "")  # Handle the case when 'SourceId' is missing
 
                 item = {"name": name, "id": uuid, "complete": complete, "SourceId": source}
                 _LOGGER.debug("Item: " + str(item))
